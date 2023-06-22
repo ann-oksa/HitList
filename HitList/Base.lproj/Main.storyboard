@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uLc-EX-U3o">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uLc-EX-U3o">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,13 +35,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3Jr-td-UZC">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="han-vK-qm2">
-                            <connections>
-                                <action selector="addName:" destination="BYZ-38-t0r" id="RPb-5q-Ina"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="han-vK-qm2"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="addNewNameButton" destination="han-vK-qm2" id="RvH-mw-izC"/>
                         <outlet property="tableView" destination="oTB-cL-CUA" id="73n-M2-Gg2"/>
                     </connections>
                 </viewController>
@@ -70,9 +68,6 @@
                                 <rect key="frame" x="89" y="302" width="215" height="35"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
-                                <connections>
-                                    <action selector="addButtonClicked:" destination="dX4-Ou-sDY" eventType="touchUpInside" id="h8u-Ws-XsL"/>
-                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="C1G-3j-Oco"/>

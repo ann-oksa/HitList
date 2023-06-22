@@ -15,6 +15,7 @@
 		04598FBD29B0C28100DB6F44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04598FBC29B0C28100DB6F44 /* Assets.xcassets */; };
 		04598FC029B0C28100DB6F44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04598FBE29B0C28100DB6F44 /* LaunchScreen.storyboard */; };
 		04F3482929BDC23A00241C60 /* AddNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F3482829BDC23A00241C60 /* AddNew.swift */; };
+		04F4313F2A441E5600DAB5B3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4313E2A441E5600DAB5B3 /* Constants.swift */; };
 		04F7096C29BDD0A400A2350B /* CoreDataMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7096B29BDD0A400A2350B /* CoreDataMethods.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		04598FBF29B0C28100DB6F44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04598FC129B0C28100DB6F44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04F3482829BDC23A00241C60 /* AddNew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNew.swift; sourceTree = "<group>"; };
+		04F4313E2A441E5600DAB5B3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04F7096B29BDD0A400A2350B /* CoreDataMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMethods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 				04F3482829BDC23A00241C60 /* AddNew.swift */,
 				04598FB429B0C27E00DB6F44 /* ViewController.swift */,
 				04F7096B29BDD0A400A2350B /* CoreDataMethods.swift */,
+				04F4313E2A441E5600DAB5B3 /* Constants.swift */,
 				04598FB629B0C27E00DB6F44 /* Main.storyboard */,
 				04598FBC29B0C28100DB6F44 /* Assets.xcassets */,
 				04598FBE29B0C28100DB6F44 /* LaunchScreen.storyboard */,
@@ -151,6 +154,7 @@
 				04F7096C29BDD0A400A2350B /* CoreDataMethods.swift in Sources */,
 				04F3482929BDC23A00241C60 /* AddNew.swift in Sources */,
 				04598FBB29B0C27E00DB6F44 /* HitList.xcdatamodeld in Sources */,
+				04F4313F2A441E5600DAB5B3 /* Constants.swift in Sources */,
 				04598FB129B0C27E00DB6F44 /* AppDelegate.swift in Sources */,
 				04598FB329B0C27E00DB6F44 /* SceneDelegate.swift in Sources */,
 			);

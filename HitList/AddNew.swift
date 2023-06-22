@@ -15,29 +15,40 @@ protocol AddNewProtocol: AnyObject {
 
 class AddNew: UIViewController {
     
-    class var identifier: String { return String(describing: self) }
+    //MARK: - Outlets
+    @IBOutlet private weak var titleTextfiled: UITextField!
+    @IBOutlet private weak var notesTextfield: UITextField!
+    @IBOutlet private weak var addButton: UIButton!
+    
+    //MARK: - Private properties
     weak var delegate: AddNewProtocol?
+    private let constant = Constant.shared
+    
+    //MARK: - Other
+    class var identifier: String { return String(describing: self) }
     var currentNote: NSManagedObject?
     var currentNoteIndex: Int?
     
-    @IBOutlet weak var titleTextfiled: UITextField!
-    
-    @IBOutlet weak var notesTextfield: UITextField!
-    
-    @IBOutlet weak var addButton: UIButton!
+    //MARK: - LifecycleMethods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Add New"
-        titleTextfiled.placeholder = "Name/Surname"
-        notesTextfield.placeholder = "Notes"
+        setupView()
+    }
+}
+
+private extension AddNew {
+    func setupView() {
+        title = constant.newName
+        titleTextfiled.placeholder = constant.nameSurname
+        notesTextfield.placeholder = constant.notes
         if let note = currentNote {
-            titleTextfiled.text = note.value(forKey: "name") as? String
+            titleTextfiled.text = note.value(forKey: constant.name) as? String
         }
-        addButton.titleLabel?.text = currentNote == nil ? "Add" : "Change"
+        addButton.titleLabel?.text = currentNote == nil ? constant.add : constant.change
+        addButton.addTarget(self, action: #selector(addButtonClicked), for: .touchUpInside)
     }
     
-    @IBAction func addButtonClicked(_ sender: Any) {
+    @objc func addButtonClicked() {
         guard let textToSave = titleTextfiled.text, !textToSave.isEmpty  else { return }
         if currentNote == nil {
             delegate?.addNewNoteClicked(notes: textToSave)
@@ -46,5 +57,4 @@ class AddNew: UIViewController {
         }
         navigationController?.popViewController(animated: true)
     }
-    
 }
