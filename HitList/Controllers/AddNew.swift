@@ -8,12 +8,12 @@
 import UIKit
 import CoreData
 
-protocol AddNewProtocol: AnyObject {
+protocol AddNewDelegate: AnyObject {
     func addNewNoteClicked(notes: String)
     func changeCurrentNote(text: String?, index: Int?)
 }
 
-class AddNew: UIViewController {
+final class AddNew: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet private weak var titleTextfiled: UITextField!
@@ -21,7 +21,7 @@ class AddNew: UIViewController {
     @IBOutlet private weak var addButton: UIButton!
 
     // MARK: - Private properties
-    weak var delegate: AddNewProtocol?
+    weak var delegate: AddNewDelegate?
     private let constant = Constant.shared
 
     // MARK: - Other

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addNewNameButton: UIBarButtonItem!
@@ -53,7 +53,7 @@ private extension ViewController {
     }
 }
 
-extension ViewController: AddNewProtocol {
+extension ViewController: AddNewDelegate {
     func changeCurrentNote(text: String?, index: Int?) {
         change(text: text, index: index)
         tableView.reloadData()
@@ -122,7 +122,7 @@ private extension ViewController {
         }
     }
 }
-
+// MARK: - Table View
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return people.count
