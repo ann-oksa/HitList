@@ -41,6 +41,7 @@ private extension AddNew {
         title = constant.newName
         titleTextfiled.placeholder = constant.nameSurname
         notesTextfield.placeholder = constant.notes
+        titleTextfiled.autocapitalizationType = .words
         if let note = currentNote {
             titleTextfiled.text = note.value(forKey: constant.name) as? String
         }
@@ -49,12 +50,36 @@ private extension AddNew {
     }
 
     @objc func addButtonClicked() {
-        guard let textToSave = titleTextfiled.text, !textToSave.isEmpty  else { return }
+        guard let textToSave = titleTextfiled.text, !textToSave.isEmpty  else {
+            showErrorAlert()
+            return
+        }
         if currentNote == nil {
             delegate?.addNewNoteClicked(notes: textToSave)
         } else {
             delegate?.changeCurrentNote(text: textToSave, index: currentNoteIndex)
         }
         navigationController?.popViewController(animated: true)
+    }
+    
+    func showErrorAlert() {
+        let alert = UIAlertController(title: constant.smthWentWrong, message: constant.checkFields, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: constant.ok, style: .cancel))
+        self.present(alert, animated: true)
+    }
+}
+
+extension AddNew: UITextFieldDelegate {
+    // MARK: validation to check spaces in name, check it
+    func textField(_ view: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let name = titleTextfiled.text else { return true }
+        
+        if name.hasPrefix(" ") || name.hasSuffix(" ") {
+           let newName = name.replacingOccurrences(of: " ", with: "")
+            titleTextfiled.text = newName
+            titleTextfiled.insertText(newName)
+            return false
+        }
+        return true
     }
 }

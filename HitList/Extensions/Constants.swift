@@ -21,4 +21,7 @@ class Constant {
     let notes = "Notes"
     let add = "Add"
     let change = "Change"
+    let smthWentWrong = "Oops! Something went wrong"
+    let checkFields = "Please check your fields"
+    let ok = "OK"
 }
