@@ -9,7 +9,7 @@ import Foundation
 
 class Constant {
     public static let shared = Constant()
-    
+
     let titleMyFriend = "My friends"
     let cell = "Cell"
     let storyboardMain = "Main"

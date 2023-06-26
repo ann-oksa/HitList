@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-//extension ViewController {
+// extension ViewController {
 //    func prepareToUseCoreData() {
 //        self.appDelegate = UIApplication.shared.delegate as? AppDelegate
 //        self.managedContext = appDelegate?.persistentContainer.viewContext
@@ -63,4 +63,4 @@ import CoreData
 //            
 //        }
 //    }
-//}
+// }

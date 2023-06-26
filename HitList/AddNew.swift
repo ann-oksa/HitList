@@ -14,22 +14,22 @@ protocol AddNewProtocol: AnyObject {
 }
 
 class AddNew: UIViewController {
-    
-    //MARK: - Outlets
+
+    // MARK: - Outlets
     @IBOutlet private weak var titleTextfiled: UITextField!
     @IBOutlet private weak var notesTextfield: UITextField!
     @IBOutlet private weak var addButton: UIButton!
-    
-    //MARK: - Private properties
+
+    // MARK: - Private properties
     weak var delegate: AddNewProtocol?
     private let constant = Constant.shared
-    
-    //MARK: - Other
+
+    // MARK: - Other
     class var identifier: String { return String(describing: self) }
     var currentNote: NSManagedObject?
     var currentNoteIndex: Int?
-    
-    //MARK: - LifecycleMethods
+
+    // MARK: - LifecycleMethods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -47,7 +47,7 @@ private extension AddNew {
         addButton.titleLabel?.text = currentNote == nil ? constant.add : constant.change
         addButton.addTarget(self, action: #selector(addButtonClicked), for: .touchUpInside)
     }
-    
+
     @objc func addButtonClicked() {
         guard let textToSave = titleTextfiled.text, !textToSave.isEmpty  else { return }
         if currentNote == nil {

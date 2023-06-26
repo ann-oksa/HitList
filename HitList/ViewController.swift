@@ -9,22 +9,22 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-    //MARK: - Outlets
+    // MARK: - Outlets
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var addNewNameButton: UIBarButtonItem!
-    
-    //MARK: - Private properties
+
+    // MARK: - Private properties
     private let constant = Constant.shared
     private var people: [NSManagedObject] = []
     private var appDelegate: AppDelegate?
-    private var managedContext:  NSManagedObjectContext?
+    private var managedContext: NSManagedObjectContext?
 
-    //MARK: - Lifecycle methods
+    // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         prepareToUseCoreData()
@@ -42,7 +42,7 @@ private extension ViewController {
         addNewNameButton.target = self
         addNewNameButton.action = #selector(goToAddNewNameVC)
     }
-    
+
     @objc func goToAddNewNameVC() {
         let storyboard = UIStoryboard(name: constant.storyboardMain, bundle: nil)
         guard let addNewNameVC = storyboard.instantiateViewController(withIdentifier: constant.addNewName) as? AddNew else { return }
@@ -58,24 +58,24 @@ extension ViewController: AddNewProtocol {
         change(text: text, index: index)
         tableView.reloadData()
     }
-    
+
     func addNewNoteClicked(notes: String) {
         save(name: notes)
         tableView.reloadData()
     }
 }
 
-//MARK: - CoreDataMethods
+// MARK: - CoreDataMethods
 private extension ViewController {
     func prepareToUseCoreData() {
         appDelegate = UIApplication.shared.delegate as? AppDelegate
         managedContext = appDelegate?.persistentContainer.viewContext
     }
-    
+
     func getAllData() {
         let fetchRequest =
         NSFetchRequest<NSManagedObject>(entityName: constant.entityNamePerson)
-        
+
         do {
             guard let managedContext = managedContext else { return }
             people = try managedContext.fetch(fetchRequest)
@@ -90,7 +90,7 @@ private extension ViewController {
         let person = NSManagedObject(entity: entity,
                                      insertInto: managedContext)
         person.setValue(name, forKeyPath: constant.name)
-        
+
         do {
             try managedContext.save()
             people.append(person)
@@ -98,7 +98,7 @@ private extension ViewController {
             print("Could not save. \(error), \(error.userInfo)")
         }
     }
-    
+
     func remove(index: Int) {
         guard let managedContext = managedContext else { return }
         managedContext.delete(people[index])
@@ -109,7 +109,7 @@ private extension ViewController {
             print("Could not remove. \(error), \(error.userInfo)")
         }
     }
-    
+
     func change(text: String?, index: Int?) {
         guard let managedContext = managedContext,
               let index = index else { return }
@@ -118,22 +118,23 @@ private extension ViewController {
             try  managedContext.save()
         } catch let error as NSError {
             print("Could not change. \(error), \(error.userInfo)")
-            
+
         }
     }
 }
 
-extension ViewController: UITableViewDataSource, UITableViewDelegate  {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return people.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let person = people[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: constant.cell, for: indexPath)
         cell.textLabel?.text = person.value(forKeyPath: constant.name) as? String
         return cell
     }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentNote = people[indexPath.row]
         let storyboard = UIStoryboard(name: constant.storyboardMain, bundle: nil)
@@ -148,7 +149,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate  {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             remove(index: indexPath.row)
